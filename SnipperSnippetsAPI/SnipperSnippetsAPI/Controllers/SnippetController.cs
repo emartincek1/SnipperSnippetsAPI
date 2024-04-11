@@ -5,7 +5,7 @@ using SnipperSnippetsAPI.Repositories.Contracts;
 
 namespace SnipperSnippetsAPI.Controllers
 {
-    [Route("api/Snippet")]
+    [Route("api/snippet")]
     [ApiController]
     public class SnippetsController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace SnipperSnippetsAPI.Controllers
         
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Snippet>>> GetSnippetsByLanguage([FromQuery] string? language)
+        public async Task<ActionResult<IEnumerable<Snippet>>> GetSnippetsByLanguage([FromQuery] string? language = null)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace SnipperSnippetsAPI.Controllers
                 {
                     var snippets = await snipperSnippetRepository.GetSnippetsByLanguage(language);
 
-                    if (snippets == null)
+                    if (snippets == null || snippets.Count() < 1)
                     {
                         return NotFound();
                     }
@@ -40,7 +40,7 @@ namespace SnipperSnippetsAPI.Controllers
                 {
                     var snippets = await snipperSnippetRepository.GetSnippets();
 
-                    if (snippets == null)
+                    if (snippets == null || snippets.Count() < 1 )
                     {
                         return NotFound();
                     }
@@ -86,7 +86,7 @@ namespace SnipperSnippetsAPI.Controllers
         {
             try
             {
-                var addedSnippet = await snipperSnippetRepository.AddSnippet(snippet.language, snippet.code);
+                var addedSnippet = await snipperSnippetRepository.AddSnippet(snippet);
 
                 if (addedSnippet == null)
                 {
