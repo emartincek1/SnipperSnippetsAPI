@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SnipperSnippetsAPI.Data;
+using SnipperSnippetsAPI.Repositories;
+using SnipperSnippetsAPI.Repositories.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<SnipperSnippetsDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SnipperSnippetsConnection"))
 );
+
+builder.Services.AddScoped<ISnipperSnippetRepository, SnipperSnippetRepository>();
 
 var app = builder.Build();
 
