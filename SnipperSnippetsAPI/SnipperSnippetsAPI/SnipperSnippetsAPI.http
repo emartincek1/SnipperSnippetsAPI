@@ -1,0 +1,6 @@
+@SnipperSnippetsAPI_HostAddress = http://localhost:5197
+
+GET {{SnipperSnippetsAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
