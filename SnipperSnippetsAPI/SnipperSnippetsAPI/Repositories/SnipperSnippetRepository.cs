@@ -14,16 +14,11 @@ namespace SnipperSnippetsAPI.Repositories
             _snipperSnippetsDbContext = snipperSnippetsDbContext;
         }
 
-        public async Task<Snippet> AddSnippet(string language, string code)
+        public async Task<Snippet?> AddSnippet(Snippet snippet)
         {
-            var snippet = new Snippet
-            {
-                language = language,
-                code = code
-            };
-
             if (snippet != null)
             {
+                snippet.id = 0;
                 var result = await _snipperSnippetsDbContext.Snippets.AddAsync(snippet);
                 await _snipperSnippetsDbContext.SaveChangesAsync();
                 return result.Entity;
@@ -45,11 +40,11 @@ namespace SnipperSnippetsAPI.Repositories
             return snippets;
         }
 
-        public async Task<IEnumerable<Snippet>> GetSnippetsByLanguage(string language)
+        public async Task<IEnumerable<Snippet>?> GetSnippetsByLanguage(string language)
         {
             var snippets = await (from snippet in _snipperSnippetsDbContext.Snippets
                                   where snippet.language == language
-                                  select snippet).ToListAsync();
+                                  select snippet).ToListAsync() ?? null;
             return snippets;
         }
     }
