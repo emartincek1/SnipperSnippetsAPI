@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SnipperSnippetsAPI.Data;
 using SnipperSnippetsAPI.Repositories;
 using SnipperSnippetsAPI.Repositories.Contracts;
+using SnipperSnippetsAPI.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddDbContextPool<SnipperSnippetsDbContext>(options =>
 );
 
 builder.Services.AddScoped<ISnipperSnippetRepository, SnipperSnippetRepository>();
+builder.Services.AddSingleton<EncryptUtility>();
 
 var app = builder.Build();
 
