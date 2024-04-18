@@ -5,7 +5,7 @@ using SnipperSnippetsAPI.Repositories.Contracts;
 
 namespace SnipperSnippetsAPI.Controllers
 {
-    [Route("api/snippet")]
+    [Route("api/snippets")]
     [ApiController]
     public class SnippetsController : ControllerBase
     {

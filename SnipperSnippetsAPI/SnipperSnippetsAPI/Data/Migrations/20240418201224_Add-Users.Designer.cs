@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnipperSnippetsAPI.Data;
 
@@ -10,9 +11,11 @@ using SnipperSnippetsAPI.Data;
 namespace SnipperSnippetsAPI.Migrations
 {
     [DbContext(typeof(SnipperSnippetsDbContext))]
-    partial class SnipperSnippetsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240418201224_Add-Users")]
+    partial class AddUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -11,5 +11,7 @@ namespace SnipperSnippetsAPI.Data
         }
 
         public DbSet<Snippet> Snippets { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }

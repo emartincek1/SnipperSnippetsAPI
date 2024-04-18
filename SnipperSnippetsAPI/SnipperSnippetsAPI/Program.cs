@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SnipperSnippetsAPI.Data;
+using SnipperSnippetsAPI.Middleware;
 using SnipperSnippetsAPI.Repositories;
 using SnipperSnippetsAPI.Repositories.Contracts;
 using SnipperSnippetsAPI.Utilities;
@@ -18,6 +19,7 @@ builder.Services.AddDbContextPool<SnipperSnippetsDbContext>(options =>
 );
 
 builder.Services.AddScoped<ISnipperSnippetRepository, SnipperSnippetRepository>();
+builder.Services.AddScoped<IIdentityServiceRepository, IdentityServiceRepository>();
 builder.Services.AddSingleton<EncryptUtility>();
 
 var app = builder.Build();
@@ -30,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<BasicAuthMiddleware>();
 
 app.UseAuthorization();
 
