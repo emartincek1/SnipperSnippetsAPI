@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SnipperSnippetsAPI.Entities;
 using SnipperSnippetsAPI.Repositories.Contracts;
@@ -7,6 +8,7 @@ namespace SnipperSnippetsAPI.Controllers
 {
     [Route("api/snippets")]
     [ApiController]
+    [Authorize]
     public class SnippetsController : ControllerBase
     {
         private readonly ISnipperSnippetRepository snipperSnippetRepository;

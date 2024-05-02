@@ -69,5 +69,9 @@ namespace SnipperSnippetsAPI.Repositories
             }
         }
 
+        public async Task<User?> GetUserById(long id)
+        {
+            return await _snipperSnippetsDbContext.Users.SingleOrDefaultAsync(c => c.id == id);
+        }
     }
 }

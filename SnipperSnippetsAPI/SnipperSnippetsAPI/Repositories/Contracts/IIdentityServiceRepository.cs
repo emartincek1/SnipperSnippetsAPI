@@ -7,5 +7,6 @@ namespace SnipperSnippetsAPI.Repositories.Contracts
     {
         Task<User> CreateUser(string email, string password);
         Task<User> AuthenticateUser(string email, string password);
+        Task<User?> GetUserById(long id);
     }
 }
